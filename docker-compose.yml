@@ -1,0 +1,36 @@
+version: '3'
+services:
+    transmission:
+        image: linuxserver/transmission
+        environment:
+            - PUID=1000
+            - PGID=1000
+            - TZ=Asia/Shanghai
+            - USER=$TRANSMISSION_USER
+            - PASS=$TRANSMISSION_PASS
+        ports:
+            - '9091:9091'
+            - '51413:51413'
+            - '51413:51413/udp'
+        restart: unless-stopped
+        volumes:
+            - './data/transmission/config:/config'
+            - './data/transmission/watch:/watch'
+            - './data/downloads:/downloads'
+    afp-server:
+        image: cilix/netatalk
+        ports:
+            - '548:548'
+        restart: unless-stopped
+        volumes:
+            - './data/documents:/media/documents'
+            - './data/downloads:/media/downloads'
+        command:
+            - '-u'
+            - $AFP_ADMIN_USER;$AFP_ADMIN_PASS
+            - '-u'
+            - $AFP_GUEST_USER;$AFP_GUEST_PASS
+            - '-s'
+            - Documents;/media/documents;none;$AFP_ADMIN_USER;no;$AFP_ADMIN_USER;no
+            - '-s'
+            - Downloads;/media/downloads;$AFP_GUEST_USER;$AFP_ADMIN_USER;no;$AFP_ADMIN_USER,$AFP_GUEST_USER;no
