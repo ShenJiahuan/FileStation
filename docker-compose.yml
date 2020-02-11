@@ -2,6 +2,7 @@ version: '3'
 services:
     transmission:
         image: linuxserver/transmission
+        hostname: MyTransmission
         environment:
             - PUID=1000
             - PGID=1000
@@ -19,6 +20,7 @@ services:
             - './data/downloads:/downloads'
     afp-server:
         image: cilix/netatalk
+        hostname: MyNetatalk
         ports:
             - '548:548'
         restart: unless-stopped
