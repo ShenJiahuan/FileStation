@@ -36,3 +36,17 @@ services:
             - Documents;/media/documents;none;$AFP_ADMIN_USER;no;$AFP_ADMIN_USER;no
             - '-s'
             - Downloads;/media/downloads;$AFP_GUEST_USER;$AFP_ADMIN_USER;no;$AFP_ADMIN_USER,$AFP_GUEST_USER;no
+    samba-server:
+        build: ./samba
+        hostname: MySamba
+        environment:
+            - SMB_ADMIN_USER=$SMB_ADMIN_USER
+            - SMB_ADMIN_PASS=$SMB_ADMIN_PASS
+            - SMB_GUEST_USER=$SMB_GUEST_USER
+            - SMB_GUEST_PASS=$SMB_GUEST_PASS
+        ports:
+            - '445:445'
+        restart: unless-stopped
+        volumes:
+            - './data/documents:/media/documents'
+            - './data/downloads:/media/downloads'
