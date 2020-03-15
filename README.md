@@ -1,6 +1,6 @@
-# Netatalk & Transmission in Docker
+# Netatalk, Samba and Transmission in Docker
 
-This repository combined two components together: Netatalk and Transmission. These two provides basic functionalities of a NAS: remote file access and remote download.
+This repository combined three components together: Netatalk, Samba and Transmission. These three provides basic functionalities of a NAS: remote file access and remote download.
 
 ## Usage
 
@@ -24,8 +24,8 @@ $ docker-compose up
 
 ### Step 3
 
-Access afp://\$server_ip:548 to verify Netatalk has started up, and http://\$server_ip:9091 to verify Transmission has started up.
+Access afp://\$server_ip:548 to verify Netatalk has started up, smb://\$server_ip:445 to verify Samba has started up, and http://\$server_ip:9091 to verify Transmission has started up.
 
 ## Acknowledgments
 
-This repository is based on @cilix's [work](https://github.com/cilix-lab/docker-netatalk) to convert Netatalk into a docker container and @linuxserver's [work](https://github.com/linuxserver/docker-transmission) to convert Transmission into a docker container.
+This repository is based on @cilix's [work](https://github.com/cilix-lab/docker-netatalk) to convert Netatalk into a docker container, @Stanback's [work](https://github.com/Stanback/alpine-samba) to convert Samba into a docker container and @linuxserver's [work](https://github.com/linuxserver/docker-transmission) to convert Transmission into a docker container.
