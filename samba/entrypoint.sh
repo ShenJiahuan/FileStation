@@ -8,4 +8,4 @@ adduser -s /sbin/nologin -h /home/samba -H -D $SMB_GUEST_USER
 sh -c "sed -i 's/admin_user/$SMB_ADMIN_USER/g' /etc/samba/smb.conf"
 sh -c "sed -i 's/guest_user/$SMB_GUEST_USER/g' /etc/samba/smb.conf"
 
-smbd --foreground --log-stdout
+smbd --foreground --log-stdout < /dev/null
